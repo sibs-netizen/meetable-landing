@@ -5,7 +5,7 @@ import HowItWorks from './components/HowItWorks';
 import ValueProps from './components/ValueProps';
 import Testimonials from './components/Testimonials';
 import CityCTA from './components/CityCTA';
-import FAQTeaser from './components/FAQTeaser';
+import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
       <ValueProps />
       <Testimonials />
       <CityCTA />
-      <FAQTeaser />
+      <FAQSection />
       <Footer />
     </div>
   );

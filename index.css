@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.hero-countdown__text {
+  font-family: 'Montserrat', sans-serif;
+}
+
+header {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Nav Pill Styling */
+.nav-pill {
+  background: #ffffff !important;
+  border-radius: 999px !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+  padding: 10px 24px;
+  position: relative;
+  z-index: 20;
+  margin: 16px auto 0 auto; /* center and float slightly above content */
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 6% 60px;
+  color: #ffffff;
+  background-image: url('/assets/hero.jpg'); /* Apply the hero image here */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(5, 10, 20, 0.85) 0%,
+    rgba(5, 10, 20, 0.5) 35%,
+    rgba(5, 10, 20, 0.1) 65%,
+    rgba(5, 10, 20, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+  text-align: left;
+  padding-top: 24px;
+}
+
+.hero-content .city-pill {
+  margin-bottom: 16px;
+  margin-top: 12px;
+}
+
+.hero-content h1 {
+  margin: 8px 0 16px;
+  font-size: 3.2rem;
+  line-height: 1.05;
+}
+
+.hero-content p {
+  margin-bottom: 24px;
+  font-size: 1rem;
+  max-width: 480px;
+}
+
+.hero-cta {
+  margin-bottom: 16px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 110px 20px 60px;
+    align-items: flex-end;
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+}
+
+.countdown-text {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.fake-button-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: #01687a; /* Match personality quiz button blue */
+  color: white;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 14px rgba(1,104,122,0.35);
+  transition: all 0.3s ease;
+}
+
+.fake-button-ring:hover {
+  background-color: #015866;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(1,104,122,0.5);
+}
+
+#how-it-works {
+  margin-top: 0;
+  padding-top: 40px;
+}
+
+/* Card accent circles */
+#how-it-works div.group::before,
+#how-it-works div.group::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(1, 119, 135, 0.3); /* Meetable primary with opacity */
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 20; /* Above image, below content */
+}
+
+#how-it-works div.group::before {
+  top: 10px;
+  left: 10px;
+}
+
+#how-it-works div.group::after {
+  bottom: 10px;
+  right: 10px;
+}
+
+#how-it-works div.group:hover::before,
+#how-it-works div.group:hover::after {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Testimonial Section */
+#testimonials {
+  overflow: hidden;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.6s ease;
+}
+
+.testimonial-card {
+  flex: 0 0 calc((100% - 48px) / 3); /* 3 cards visible */
+}
+
+/* Don't Eat Alone Section */
+#dont-eat-alone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.dea-left {
+  flex: 1;
+}
+
+.dea-right {
+  flex: 1;
+  position: relative;
+  overflow: visible; /* do NOT cut off polaroids */
+}
+
+.polaroid-wrapper {
+  position: relative;
+  max-width: 320px;
+  margin-left: auto;
+}
+
+.polaroid-wrapper img {
+  position: absolute;
+  width: 140px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  object-fit: cover; /* Added object-fit for cropping */
+}
+
+/* Example positioning so they cluster but don't hit the text */
+.polaroid-wrapper img:nth-child(1) { left: 0; top: 20px; transform: rotate(-5deg); }
+.polaroid-wrapper img:nth-child(2) { left: 80px; top: 0; transform: rotate(3deg); }
+.polaroid-wrapper img:nth-child(3) { left: 140px; top: 40px; transform: rotate(-2deg); }
+
+/* FAQ Section */
+/* FAQ Section */
+#faq {
+  padding: 80px 20px;
+  background: linear-gradient(
+    180deg,
+    #02879b 0%,
+    #01687a 55%,
+    #015968 100%
+  );
+  color: #ffffff;
+}
+
+.faq-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.faq-subtitle {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 32px auto;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-item + .faq-item {
+  margin-top: 12px;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.faq-answer {
+  display: none;
+  background: rgba(0, 0, 0, 0.18);
+  padding: 12px 16px;
+  border-radius: 0 0 12px 12px;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-icon {
+  margin-left: 12px;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+/* Footer styling */
+/* Footer styling */
+footer {
+  background: linear-gradient(
+    180deg,
+    #00151b 0%,
+    #012b34 50%,
+    #01323d 100%
+  );
+  color: white;
+  padding: 40px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+.btn-label-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: theme('colors.meetable.primary'); /* Using Tailwind color */
+  color: theme('colors.white'); /* Using Tailwind color */
+  padding: 0.6rem 1.5rem; /* Adjusted padding */
+  border-radius: 999px; /* Full rounded */
+  font-weight: 700; /* font-bold */
+  font-size: 0.9rem; /* Slightly larger than text-xs, smaller than text-lg */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow */
+  transition: all 0.3s ease;
+}
+
+.btn-label-style:hover {
+  background-color: #016573; /* Darker primary on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.hero-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.hero-countdown__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  margin: 0;
+}
+
+.hero-countdown__grid {
+  display: flex;
+  gap: 10px;
+}
+
+.hero-countdown__unit {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+
+.hero-countdown__value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hero-countdown__text {
+  font-size: 0.65rem;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .hero-countdown__unit {
+    width: 44px;
+    height: 44px;
+  }
+  .hero-countdown__value {
+    font-size: 0.95rem;
+  }
+}
+/* Countdown enhancements – place at very end of file */
+
+.hero-countdown {
+  margin-top: -4px; /* aligns visually with the other stats */
+}
+
+.hero-countdown__unit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+}
+
+/* Mobile: 2×2 grid layout for better spacing */
+@media (max-width: 768px) {
+  .hero-countdown__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+/* ===== MOBILE OPTIMISATION ===== */
+@media (max-width: 768px) {
+  /* Nav pill: a bit smaller on mobile */
+  .nav-pill {
+    padding: 6px 18px;
+    margin-top: 8px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Hero: tighter padding and full-width content */
+  .hero {
+    padding: 100px 16px 48px;
+    align-items: flex-end;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  /* Stats + countdown: stack vertically */
+  .hero-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .hero-countdown {
+    align-items: flex-start;
+  }
+
+  .hero-countdown__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .hero-countdown__unit {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-countdown__value {
+    font-size: 0.95rem;
+  }
+
+  /* Testimonials: show one card per row */
+  .testimonial-card {
+    flex: 0 0 100%;
+  }
+
+  /* Don't Eat Alone: stack image under text */
+  #dont-eat-alone {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dea-right {
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  .polaroid-wrapper {
+    margin-left: 0;
+    max-width: 260px;
+  }
+
+  .polaroid-wrapper img {
+    width: 120px;
+  }
+}

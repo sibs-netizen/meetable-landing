@@ -30,17 +30,15 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div 
-        className={`pointer-events-auto relative w-[92%] md:w-auto max-w-7xl mx-auto bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-white/40 transition-all duration-500 ease-in-out flex items-center justify-between px-5 md:px-8 ${
-            isScrolled ? 'py-2.5 shadow-md' : 'py-4 shadow-xl'
+        className={`nav-pill pointer-events-auto relative w-[92%] md:w-auto max-w-7xl mx-auto transition-all duration-500 ease-in-out flex items-center justify-between px-5 md:px-8 ${
+            isScrolled ? 'py-2.5' : 'py-4'
         }`}
-        style={{ minWidth: 'min(92%, 1000px)' }}
+        style={{ minWidth: 'min(92%, 1000px)', outline: 'none' }}
       >
         {/* Logo */}
-        <div className="flex-shrink-0">
-          <a href="/" className="text-2xl font-serif font-bold text-meetable-primary tracking-tight flex items-baseline group">
-            meetable<span className="text-meetable-accent transform transition-transform group-hover:-translate-y-1 inline-block">.</span>
+          <a href="/">
+            <img src="/assets/meetable-logo.png" alt="Meetable logo" className="h-8 md:h-9" />
           </a>
-        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
@@ -48,7 +46,7 @@ const Navbar: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-sm font-medium text-gray-600 hover:text-meetable-primary transition-colors relative group"
+              className="text-sm font-medium text-gray-600 hover:text-meetable-primary transition-colors relative group hover:scale-105 hover:shadow-meetable-glow transform transition-transform focus:outline-none"
             >
               {link.name}
               <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-meetable-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
@@ -60,7 +58,7 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:flex items-center">
             <a 
                 href={quizLink}
-                className="bg-gradient-to-r from-meetable-primary to-[#4fd1e3] text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:shadow-meetable-primary/20 transform hover:-translate-y-0.5 hover:brightness-105"
+                className="bg-gradient-to-r from-meetable-primary to-[#4fd1e3] text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:shadow-meetable-primary/20 transform hover:-translate-y-0.5 hover:brightness-105 focus:outline-none"
             >
                 Take the quiz
             </a>
@@ -68,7 +66,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Toggle */}
         <button 
-            className="lg:hidden text-meetable-dark p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="lg:hidden text-meetable-dark p-2 hover:bg-gray-100 rounded-full transition-colors focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
         >
