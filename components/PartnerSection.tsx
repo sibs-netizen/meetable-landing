@@ -11,6 +11,8 @@ const PartnerSection: React.FC = () => {
             <img 
                 src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=2940&auto=format&fit=crop" 
                 alt="Restaurant interior" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover opacity-70"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-transparent md:hidden"></div>

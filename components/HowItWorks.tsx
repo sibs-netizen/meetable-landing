@@ -8,7 +8,12 @@ const steps = [
     desc: 'Choose where you want to dine. We curate experiences in top-rated local restaurants perfect for conversation.',
     icon: <MapPin className="w-8 h-8 text-white" />,
     color: 'bg-blue-500',
-    img: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2744&auto=format&fit=crop',
+    image: {
+      fallback: '/assets/pexels-taryn-elliott-6790327.jpg',
+      webp: '/assets/pexels-taryn-elliott-6790327-640.webp 640w, /assets/pexels-taryn-elliott-6790327-960.webp 960w, /assets/pexels-taryn-elliott-6790327-1400.webp 1400w',
+      width: 3645,
+      height: 5467,
+    },
   },
   {
     id: '02',
@@ -16,7 +21,12 @@ const steps = [
     desc: 'Take our short personality quiz. Tell us about your interests, your vibe, and what kind of people you want to meet.',
     icon: <Sparkles className="w-8 h-8 text-white" />,
     color: 'bg-purple-500',
-    img: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2000&auto=format&fit=crop',
+    image: {
+      fallback: '/assets/pexels-olly-3762925.jpg',
+      webp: '/assets/pexels-olly-3762925-640.webp 640w, /assets/pexels-olly-3762925-960.webp 960w, /assets/pexels-olly-3762925-1400.webp 1400w',
+      width: 5619,
+      height: 3746,
+    },
   },
   {
     id: '03',
@@ -24,7 +34,12 @@ const steps = [
     desc: 'Our algorithm pairs you with 5 compatible strangers. We book the table and set the menu. No planning required.',
     icon: <Users className="w-8 h-8 text-white" />,
     color: 'bg-meetable-primary',
-    img: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2940&auto=format&fit=crop',
+    image: {
+      fallback: '/assets/pexels-marlein-16021268.jpg',
+      webp: '/assets/pexels-marlein-16021268-640.webp 640w, /assets/pexels-marlein-16021268-960.webp 960w, /assets/pexels-marlein-16021268-1400.webp 1400w',
+      width: 3840,
+      height: 5760,
+    },
   },
   {
     id: '04',
@@ -32,7 +47,12 @@ const steps = [
     desc: 'Arrive at the venue, meet your host (if applicable), and take your seat. Skip the small talk and dive into good food.',
     icon: <UtensilsCrossed className="w-8 h-8 text-white" />,
     color: 'bg-orange-500',
-    img: 'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2940&auto=format&fit=crop',
+    image: {
+      fallback: '/assets/pexels-cottonbro-5018987.jpg',
+      webp: '/assets/pexels-cottonbro-5018987-640.webp 640w, /assets/pexels-cottonbro-5018987-960.webp 960w, /assets/pexels-cottonbro-5018987-1400.webp 1400w',
+      width: 4715,
+      height: 5894,
+    },
   },
   {
     id: '05',
@@ -40,7 +60,12 @@ const steps = [
     desc: 'Exchange info with your new friends. Many of our tables turn into running clubs, travel buddies, and lifelong connections.',
     icon: <MessageCircle className="w-8 h-8 text-white" />,
     color: 'bg-pink-500',
-    img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2832&auto=format&fit=crop',
+    image: {
+      fallback: '/assets/pexels-sebastian-coman-photography-1598188-3755083.jpg',
+      webp: '/assets/pexels-sebastian-coman-photography-1598188-3755083-640.webp 640w, /assets/pexels-sebastian-coman-photography-1598188-3755083-960.webp 960w, /assets/pexels-sebastian-coman-photography-1598188-3755083-1400.webp 1400w',
+      width: 4000,
+      height: 6000,
+    },
   },
 ];
 
@@ -69,23 +94,24 @@ const HowItWorks: React.FC = () => {
             >
               {/* Background Image */}
               <div className="absolute inset-0">
-                <img
-                  src={
-                    step.id === '01'
-                      ? '/assets/pexels-taryn-elliott-6790327.jpg'
-                      : step.id === '02'
-                      ? '/assets/pexels-olly-3762925.jpg'
-                      : step.id === '03'
-                      ? '/assets/pexels-marlein-16021268.jpg'
-                      : step.id === '04'
-                      ? '/assets/pexels-cottonbro-5018987.jpg'
-                      : step.id === '05'
-                      ? '/assets/pexels-sebastian-coman-photography-1598188-3755083.jpg'
-                      : step.img
-                  }
-                  alt={step.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50"
-                />
+                {/* Serve modern formats first to cut transfer size for card imagery */}
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={step.image.webp}
+                    sizes="(min-width: 1280px) 18vw, (min-width: 768px) 32vw, 90vw"
+                  />
+                  <img
+                    src={step.image.fallback}
+                    alt={step.title}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={step.image.width}
+                    height={step.image.height}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030b14]/80 via-[#030b14]/40 to-transparent"></div>
               </div>
 

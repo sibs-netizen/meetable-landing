@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Star, Users } from 'lucide-react';
 
+// Inline image-set keeps the hero background sharp without penalizing older browsers
+const heroBackgroundStyle: React.CSSProperties = {
+  backgroundImage: `image-set(
+    url('/assets/hero-1600.webp') type('image/webp') 1x,
+    url('/assets/hero-2400.webp') type('image/webp') 2x,
+    url('/assets/hero.jpg') type('image/jpeg') 1x
+  )`,
+};
+
 const Hero: React.FC = () => {
   const quizLink = "https://form.typeform.com/to/dECpvX3S";
 
@@ -61,7 +70,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="hero">
+    <section className="hero" style={heroBackgroundStyle}>
       <div className="hero-content">
 
         {/* City Pill */}

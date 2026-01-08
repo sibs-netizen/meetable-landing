@@ -9,7 +9,16 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             {/* Brand Column */}
             <div className="col-span-1 md:col-span-1">
-                <img src="/assets/meetable-logo.png" alt="Meetable Logo" style={{height:'28px', marginBottom: '10px'}} />
+                <picture>
+                    <source type="image/webp" srcSet="/assets/meetable-logo-white.webp" />
+                    <img
+                        src="/assets/meetable-logo-white.png"
+                        alt="Meetable Logo"
+                        loading="lazy"
+                        decoding="async"
+                        className="h-10 w-auto mb-2 md:h-12"
+                    />
+                </picture>
                 <p className="text-gray-300 text-sm leading-relaxed mb-6">
                     Meaningful connections over curated meals. We're bringing the dinner party back, one table at a time.
                 </p>

@@ -4,7 +4,7 @@ const CityCTA: React.FC = () => {
   const quizLink = 'https://form.typeform.com/to/dECpvX3S';
 
   return (
-    <section className="bg-[#FFF6E9] py-20 md:py-24">
+    <section id="cities" className="bg-[#FFF6E9] py-20 md:py-24">
       <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         {/* Left: Text + CTA */}
         <div className="flex-1 max-w-xl">
@@ -34,22 +34,47 @@ const CityCTA: React.FC = () => {
             {/* Back image */}
             <div className="absolute right-0 top-0 w-[58%] md:w-[60%] rotate-6">
               <div className="bg-white rounded-[26px] shadow-2xl shadow-black/15 p-3">
-                <img
-                  src="/assets/pexels-marlein-16021268.jpg"
-                  alt="Friends toasting over dinner"
-                  className="w-full h-44 md:h-52 object-cover rounded-[18px]"
-                />
+                {/* Polaroid imagery is loaded lazily to keep the hero thread free */}
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/pexels-marlein-16021268-640.webp 640w, /assets/pexels-marlein-16021268-960.webp 960w, /assets/pexels-marlein-16021268-1400.webp 1400w"
+                    sizes="(min-width: 1024px) 22vw, 42vw"
+                  />
+                  <img
+                    src="/assets/pexels-marlein-16021268.jpg"
+                    alt="Friends toasting over dinner"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={3840}
+                    height={5760}
+                    className="w-full h-44 md:h-52 object-cover rounded-[18px]"
+                  />
+                </picture>
               </div>
             </div>
 
             {/* Front image */}
             <div className="absolute left-0 bottom-0 w-[58%] md:w-[60%] -rotate-5">
               <div className="bg-white rounded-[26px] shadow-2xl shadow-black/20 p-3">
-                <img
-                  src="/assets/pexels-cottonbro-5018987.jpg"
-                  alt="Meetable dinner cheers"
-                  className="w-full h-44 md:h-52 object-cover rounded-[18px]"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/pexels-cottonbro-5018987-640.webp 640w, /assets/pexels-cottonbro-5018987-960.webp 960w, /assets/pexels-cottonbro-5018987-1400.webp 1400w"
+                    sizes="(min-width: 1024px) 22vw, 42vw"
+                  />
+                  <img
+                    src="/assets/pexels-cottonbro-5018987.jpg"
+                    alt="Meetable dinner cheers"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={4715}
+                    height={5894}
+                    className="w-full h-44 md:h-52 object-cover rounded-[18px]"
+                  />
+                </picture>
               </div>
             </div>
           </div>

@@ -18,6 +18,32 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      optimizeDeps: {
+        include: ['react', 'react-dom', 'lucide-react'],
+      },
+      build: {
+        target: 'es2019',
+        cssCodeSplit: true,
+        assetsInlineLimit: 4096,
+        reportCompressedSize: false,
+        rollupOptions: {
+          output: {
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                if (id.includes('lucide-react')) {
+                  return 'icons';
+                }
+                if (id.includes('react')) {
+                  return 'react';
+                }
+              }
+            },
+          },
+        },
+      },
+      esbuild: {
+        drop: mode === 'production' ? ['console', 'debugger'] : [],
       }
     };
 });

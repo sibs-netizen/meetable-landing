@@ -1,26 +1,30 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-// Import images from the assets folder (one level up from /components)
-import realLifeImg from '../assets/Real life connection.jpg';
-import curatedTablesImg from '../assets/Thoughtfully curated tables.JPG';
-import growCircleImg from '../assets/Grow your circle.JPG';
-
 const ValueProps: React.FC = () => {
   const values = [
     {
       title: 'Real life connection',
       desc: 'Step away from the screen and meet people face-to-face. We create spaces where genuine interactions happen naturally, without the pressure.',
-      img: realLifeImg,
+      fallback: '/assets/real-life-connection.jpg',
+      webp: '/assets/real-life-connection-640.webp 640w, /assets/real-life-connection-960.webp 960w, /assets/real-life-connection-1280.webp 1280w',
+      width: 3079,
+      height: 4397,
     },
     {
       title: 'Thoughtfully curated tables',
       desc: "We match you based on vibe, interests, and energy. Our algorithm ensures you're seated with people you're likely to click with.",
-      img: curatedTablesImg,
+      fallback: '/assets/thoughtfully-curated-tables.jpg',
+      webp: '/assets/thoughtfully-curated-tables-640.webp 640w, /assets/thoughtfully-curated-tables-960.webp 960w, /assets/thoughtfully-curated-tables-1280.webp 1280w',
+      width: 5397,
+      height: 3649,
     },
     {
       title: 'Grow your circle',
       desc: "Build a social life you love in your city. Whether you're new to town or just looking to expand your horizons, Meetable makes it easy.",
-      img: growCircleImg,
+      fallback: '/assets/grow-your-circle.jpg',
+      webp: '/assets/grow-your-circle-640.webp 640w, /assets/grow-your-circle-960.webp 960w, /assets/grow-your-circle-1280.webp 1280w',
+      width: 5397,
+      height: 3649,
     },
   ];
 
@@ -82,12 +86,24 @@ const ValueProps: React.FC = () => {
               {/* Image */}
               <div className="overflow-hidden rounded-3xl mb-8 w-full aspect-[4/3] relative shadow-2xl">
                 <div className="absolute inset-0 bg-meetable-primary/10 group-hover:bg-transparent transition-colors z-10"></div>
-                <img
-                  src={value.img}
-                  alt={value.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100 brightness-110"
-                />
+                {/* WebP source set keeps the photography crisp while shrinking transfer size */}
+                <picture>
+                  <source
+                    type="image/webp"
+                    sizes="(min-width: 1024px) 28vw, (min-width: 768px) 42vw, 90vw"
+                    srcSet={value.webp}
+                  />
+                  <img
+                    src={value.fallback}
+                    alt={value.title}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={value.width}
+                    height={value.height}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100 brightness-110"
+                  />
+                </picture>
               </div>
 
               {/* Text */}

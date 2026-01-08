@@ -1,9 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+
+const NAV_LINKS = [
+  { name: 'About', href: '#' },
+  { name: 'How it works', href: '#how-it-works' },
+  { name: 'Cities', href: '/cities', isRoute: true },
+  { name: 'FAQ', href: '#faq' },
+  { name: 'Community Guidelines', href: '#' },
+];
+
+const getInitialActiveLink = () => {
+  if (typeof window === 'undefined') {
+    return NAV_LINKS[0].name;
+  }
+
+  const pathname = window.location.pathname;
+  const routeMatch = NAV_LINKS.find((link) => link.isRoute && link.href === pathname);
+  if (routeMatch) {
+    return routeMatch.name;
+  }
+
+  const currentHash = window.location.hash;
+  if (currentHash && currentHash !== '#') {
+    const match = NAV_LINKS.find((link) => link.href === currentHash);
+    if (match) {
+      return match.name;
+    }
+  }
+
+  return NAV_LINKS[0].name;
+};
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState<string>(() => getInitialActiveLink());
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,13 +46,37 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'About', href: '#' },
-    { name: 'How it works', href: '#how-it-works' },
-    { name: 'Cities', href: '#' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Community Guidelines', href: '#' },
-  ];
+  useEffect(() => {
+    const syncActiveLinkWithHash = () => {
+      const currentHash = window.location.hash;
+      if (!currentHash || currentHash === '#') {
+        return;
+      }
+
+      const match = NAV_LINKS.find((link) => link.href === currentHash);
+      if (match) {
+        setActiveLink(match.name);
+      }
+    };
+
+    window.addEventListener('hashchange', syncActiveLinkWithHash);
+    return () => window.removeEventListener('hashchange', syncActiveLinkWithHash);
+  }, []);
+
+  useEffect(() => {
+    const routeMatch = NAV_LINKS.find(
+      (link) => link.isRoute && link.href === location.pathname
+    );
+
+    if (routeMatch) {
+      setActiveLink(routeMatch.name);
+      return;
+    }
+
+    if (!window.location.hash || window.location.hash === '#') {
+      setActiveLink(NAV_LINKS[0].name);
+    }
+  }, [location.pathname, location.hash]);
 
   const quizLink = "https://form.typeform.com/to/dECpvX3S";
 
@@ -36,22 +93,53 @@ const Navbar: React.FC = () => {
         style={{ minWidth: 'min(92%, 1000px)', outline: 'none' }}
       >
         {/* Logo */}
-          <a href="/">
-            <img src="/assets/meetable-logo.png" alt="Meetable logo" className="h-8 md:h-9" />
-          </a>
+          <Link to="/" className="flex items-center" onClick={() => setActiveLink(NAV_LINKS[0].name)}>
+            <picture>
+              <source type="image/webp" srcSet="/assets/meetable-logo-512.webp" />
+              <img
+                src="/assets/meetable-logo.png"
+                alt="Meetable logo"
+                width={2534}
+                height={542}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="h-8 md:h-9 w-auto"
+              />
+            </picture>
+          </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              className="text-sm font-medium text-gray-600 hover:text-meetable-primary transition-colors relative group hover:scale-105 hover:shadow-meetable-glow transform transition-transform focus:outline-none"
-            >
-              {link.name}
-              <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-meetable-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            if (link.isRoute) {
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="nav-link text-sm font-medium text-gray-600 focus:outline-none"
+                  data-active={activeLink === link.name ? 'true' : undefined}
+                  aria-current={activeLink === link.name ? 'page' : undefined}
+                  onClick={() => setActiveLink(link.name)}
+                >
+                  {link.name}
+                </Link>
+              );
+            }
+
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className="nav-link text-sm font-medium text-gray-600 focus:outline-none"
+                data-active={activeLink === link.name ? 'true' : undefined}
+                aria-current={activeLink === link.name ? 'page' : undefined}
+                onClick={() => setActiveLink(link.name)}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </nav>
 
         {/* CTA Button - Only Quiz */}
@@ -76,16 +164,39 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu Dropdown - Floating Card */}
         {mobileMenuOpen && (
             <div className="absolute top-[calc(100%+0.75rem)] right-0 left-0 mx-auto w-full bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-6 flex flex-col gap-3 animate-in slide-in-from-top-5 fade-in duration-200 overflow-hidden">
-                {navLinks.map((link) => (
-                    <a 
-                        key={link.name} 
-                        href={link.href} 
-                        className="text-lg font-medium text-gray-700 hover:text-meetable-primary px-4 py-2 rounded-xl hover:bg-gray-50 transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
+                {NAV_LINKS.map((link) => {
+                  const linkClasses = "text-lg font-medium text-gray-700 hover:text-meetable-primary px-4 py-2 rounded-xl hover:bg-gray-50 transition-colors";
+
+                  if (link.isRoute) {
+                    return (
+                      <Link
+                        key={link.name}
+                        to={link.href}
+                        className={linkClasses}
+                        onClick={() => {
+                          setActiveLink(link.name);
+                          setMobileMenuOpen(false);
+                        }}
+                      >
                         {link.name}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className={linkClasses}
+                      onClick={() => {
+                        setActiveLink(link.name);
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      {link.name}
                     </a>
-                ))}
+                  );
+                })}
                 <div className="h-px bg-gray-100 my-2"></div>
                 <a 
                     href={quizLink} 

@@ -3,60 +3,112 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meetable | One Table. Six Strangers.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              serif: ['Playfair Display', 'serif'],
-            },
-            colors: {
-              meetable: {
-                teal: '#01505c', // Darker shade of primary for text/headings
-                dark: '#0f172a',
-                light: '#eefcfd', // Very light shade of primary
-                accent: '#f59e0b', // amber-500
-                primary: '#017787', // New brand blue
-              }
-            },
-            boxShadow: { 
-              'meetable-glow': '0 0 10px rgba(1, 119, 135, 0.6)', // Meetable Blue glow
-            }
-          }
-        }
-      }
-    </script>
+    <title>Meetable | Dinners for 6 Strangers in Your City</title>
+    <meta
+      name="description"
+      content="Meet new people over a curated dinner. Meetable seats six strangers at one table in great venues—easy booking, good conversation, memorable nights."
+    />
+    <link rel="canonical" href="https://www.meetable.co.za/" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#01687a" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta property="og:title" content="Meetable | Dinners for 6 Strangers in Your City" />
+    <meta
+      property="og:description"
+      content="Meet new people over a curated dinner. Meetable seats six strangers at one table in great venues—easy booking, good conversation, memorable nights."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.meetable.co.za/" />
+    <meta property="og:site_name" content="Meetable" />
+    <meta property="og:image" content="https://www.meetable.co.za/assets/hero.jpg" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1000" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Meetable | Dinners for 6 Strangers in Your City" />
+    <meta
+      name="twitter:description"
+      content="Meet new people over a curated dinner. Meetable seats six strangers at one table in great venues—easy booking, good conversation, memorable nights."
+    />
+    <meta name="twitter:image" content="https://www.meetable.co.za/assets/hero.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      />
+    </noscript>
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="/assets/hero-1600.webp"
+      imagesizes="100vw"
+    />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      media="(min-width: 1280px)"
+      href="/assets/hero-2400.webp"
+    />
     <style>
-      /* Custom scrollbar for horizontal sections */
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+      /* inline critical font stack so first paint isn't blocked by the main bundle */
+      body {
+        margin: 0;
+        font-family: 'Montserrat', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background-color: #fff;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.meetable.co.za/#organization",
+            "name": "Meetable",
+            "url": "https://www.meetable.co.za/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.meetable.co.za/assets/meetable-logo.png"
+            },
+            "sameAs": []
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.meetable.co.za/#website",
+            "url": "https://www.meetable.co.za/",
+            "name": "Meetable",
+            "publisher": {
+              "@id": "https://www.meetable.co.za/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.meetable.co.za/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
-  <script src="script.js"></script>
 </body>
 </html>
